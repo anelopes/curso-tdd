@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MatematicaMalucaTest {
+public class MatematicaMalucaTest {
 
     @Test
     void contaMaluca() {
