@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 public class Avaliador {
 
@@ -17,6 +16,10 @@ public class Avaliador {
     private List<Lance> maiores;
 
     public void avalia(Leilao leilao) {
+        if (leilao.getLances().size() == 0) {
+            throw new RuntimeException("Não é possível avaliar um leilão sem lances!");
+        }
+
         var valorTotalLances = new AtomicReference<>(0.0);
         leilao.getLances().forEach(lance -> {
             valorTotalLances.set(valorTotalLances.get() + lance.getValor());

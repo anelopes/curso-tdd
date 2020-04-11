@@ -1,23 +1,39 @@
 package br.com.caelum.leilao.dominio;
 
+import java.util.Objects;
+
 public class Lance {
 
-	private Usuario usuario;
-	private double valor;
-	
-	public Lance(Usuario usuario, double valor) {
-		this.usuario = usuario;
-		this.valor = valor;
-	}
+    private Usuario usuario;
+    private double valor;
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+    public Lance(Usuario usuario, double valor) {
+    	if (valor <= 0.0) {
+    		throw new IllegalArgumentException("Valor do lance não pode ser igual ou menor que ZERO!");
+		}
+        this.usuario = usuario;
+        this.valor = valor;
+    }
 
-	public double getValor() {
-		return valor;
-	}
-	
-	
-	
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lance lance = (Lance) o;
+        return Double.compare(lance.valor, valor) == 0 &&
+                Objects.equals(usuario, lance.usuario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(usuario, valor);
+    }
 }
